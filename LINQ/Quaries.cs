@@ -48,6 +48,19 @@ namespace LINQ
             //    salaries.Add(employee.Item3);
             //}
             //Console.WriteLine(salaries.Max());
+
+            var employeeLanguages = Employee.GetEmployee().SelectMany(x => x.ProgrammingLanguages ,
+                (parent,child) => new
+                {
+                    Name = parent.Name,
+                    Language = child
+                } 
+                ).ToList();
+            
+            foreach (var language in employeeLanguages)
+            {
+                Console.WriteLine(language);
+            }
         }
     }
 }
